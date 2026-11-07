@@ -20,7 +20,10 @@
       const track = document.getElementById(button.dataset.target);
       if (!track) return;
       const direction = button.dataset.scroll === 'left' ? -1 : 1;
-      track.scrollBy({ left: direction * Math.max(track.clientWidth * 0.82, 260), behavior: 'smooth' });
+      track.scrollBy({
+        left: direction * Math.max(track.clientWidth * 0.82, 260),
+        behavior: 'smooth',
+      });
     });
   });
 })();
