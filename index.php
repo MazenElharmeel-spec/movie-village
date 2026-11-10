@@ -81,11 +81,11 @@ require __DIR__ . "/includes/header.php";
     <span class="eyebrow">MOVIES VILLAGE PICK</span>
     <h1><?= h($featured["title"]) ?></h1>
     <p class="hero-meta"><?=
-    h($featured["genre"])
-    $featured["release_year"] ? " · " . (int) $featured["release_year"] : ""
-    $featured["rating"] !== null
+    h($featured["genre"]) .
+    ($featured["release_year"] ? " · " . (int) $featured["release_year"] : "") .
+    ($featured["rating"] !== null
         ? " · ★ " . h(number_format((float) $featured["rating"], 1))
-        : ""
+        : "")
     ?></p>
     <p class="hero-description"><?= h(
         mb_strimwidth($featured["synopsis"], 0, 190, "…"),

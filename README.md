@@ -16,6 +16,16 @@ With Docker Desktop running, use `docker compose up --build -d` in this folder, 
 4. If needed, configure the database using environment variables `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, and `DB_PASSWORD`. Defaults are `127.0.0.1`, `3306`, `movies_village`, `root`, and an empty password for a fresh local XAMPP install. Set `APP_BASE_URL` if the site lives in a subfolder, such as `/movies-village`.
 5. Make the `uploads` folder writable by the web server. Open `/admin/setup.php` once, create the first administrator, then sign in and choose **Manage → Add movie**.
 
+## Backend smoke checks
+
+The PHP smoke test exercises catalog search/details, signup and favorites, CSRF rejection, first-admin setup, and movie create/delete flows. Run it only against a disposable Docker database because it creates test accounts:
+
+```sh
+docker compose -p movie-village-test up -d --build
+docker compose -p movie-village-test exec web php tests/smoke_backend.php
+docker compose -p movie-village-test down -v
+```
+
 Use an HTTPS PHP host and a dedicated database user for a public deployment, with PHP error display disabled. PHP's `upload_max_filesize` and `post_max_size` settings also limit movie uploads; raise them on the server when needed. Large libraries are better served from object storage or a video platform, using the external video URL field rather than a huge web-server upload.
 
 ## Add a movie

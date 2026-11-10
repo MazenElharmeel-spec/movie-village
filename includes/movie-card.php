@@ -42,8 +42,8 @@ $saved =
       <?php endif; ?>
     </div>
     <p class="card-meta"><?=
-    h($movie["genre"])
-    $movie["release_year"] ? " · " . (int) $movie["release_year"] : ""
+    h($movie["genre"]) .
+    ($movie["release_year"] ? " · " . (int) $movie["release_year"] : "")
     ?></p>
     <?php if (
         $movie["rating"] !== null

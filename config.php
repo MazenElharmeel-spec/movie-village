@@ -83,7 +83,7 @@ function verify_csrf(): void
 {
     $sent = $_POST["csrf_token"] ?? "";
     if (!is_string($sent) || !hash_equals(csrf_token(), $sent)) {
-        http_response_code(419);
+        http_response_code(403);
         exit("Your session expired. Go back and try again.");
     }
 }

@@ -28,8 +28,8 @@ require dirname(__DIR__) . "/includes/header.php";
       <td><div class="admin-movie"><img src="<?= h(
           asset_url($movie["poster_path"]),
       ) ?>" alt=""><div><strong><?= h($movie["title"]) ?></strong><small>ID <?=
-(int) $movie["id"]
-$movie["release_year"] ? " · " . (int) $movie["release_year"] : ""
+(int) $movie["id"] .
+($movie["release_year"] ? " · " . (int) $movie["release_year"] : "")
 ?></small></div></div></td>
       <td><span class="status-pill<?= $movie["published"]
           ? " status-live"
